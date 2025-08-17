@@ -4,6 +4,9 @@ This guide demonstrates how to deploy a simple Flask application on Amazon ECS t
 
 ## Architecture Overview
 
+<img width="1566" height="1471" alt="AWS AppConfig drawio" src="https://github.com/user-attachments/assets/c9b0633f-ddc8-4418-bfbc-4b6e5fc7838f" />
+
+
 The solution includes:
 - **Flask Application**: A simple web app with a user listing feature controlled by AppConfig
 - **AWS AppConfig**: Dynamic configuration management with feature flags
@@ -178,25 +181,6 @@ cd terraform
 terraform destroy
 ```
 
-## Troubleshooting
-
-### Common Issues
-
-1. **503 Service Unavailable**
-   - Check ECS service status
-   - Verify target group health
-   - Check CloudWatch logs for errors
-
-2. **Config Not Updating**
-   - Verify AppConfig deployment completed
-   - Check agent logs in CloudWatch
-   - Ensure task has proper IAM permissions
-
-3. **Container Won't Start**
-   - Check ECR image exists and is accessible
-   - Verify task role permissions
-   - Review container logs in ECS console
-
 ### Useful Commands
 
 ```bash
@@ -209,11 +193,3 @@ aws logs tail /ecs/flask-appconfig-demo --follow
 # Check AppConfig deployment
 aws appconfig list-deployments --application-id myapp --environment-id prod
 ```
-
-## Security Best Practices
-
-- Use AWS Secrets Manager for sensitive configuration
-- Implement least-privilege IAM policies
-- Enable VPC Flow Logs for network monitoring
-- Use AWS Config for compliance monitoring
-- Enable AWS CloudTrail for API auditing
